@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 
 export const Modal = ({ mode, setShowModal, getData, task }) => {
-  const editMode = mode === "edit";
+  const [cookie, setCookie, removeCookie] = useCookies(null);
+  const editMode = mode === "edit" ? true : false;
 
   const [data, setData] = useState({
-    user_email: editMode ? task.user_email : "andrew.wardjones@icloud.com",
+    user_email: editMode ? task.user_email : cookie.Email,
     title: editMode ? task.title : "",
     progress: editMode ? task.progress : 50,
     date: editMode ? task.date : new Date(), // Adjusted for date format
@@ -30,11 +32,14 @@ export const Modal = ({ mode, setShowModal, getData, task }) => {
 
   async function editdata(e) {
     e.preventDefault();
-    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/todos/${task.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/todos/${task.id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
     console.log(response);
     if (response.status === 200) {
       setShowModal(false);

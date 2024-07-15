@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { ListHeader } from "./components/ListHeader";
 import { ListItem } from "./components/ListItem";
 import { Auth } from "./components/Auth";
+import { useCookies } from "react-cookie";
 
 function App() {
+  const [cookie, setCookie, removeCookie] = useCookies(null);
   const [tasks, setTasks] = useState(null);
-  const userEmail = "andrew.wardjones@icloud.com";
-
-  const authToken = false;
+  const authToken = cookie.AuthToken;
+  const userEmail = cookie.Email;
 
   async function getData() {
     try {
@@ -22,7 +23,9 @@ function App() {
   }
 
   useEffect(() => {
-    getData();
+    if (authToken) {
+      getData();
+    }
   }, []);
 
   //sort by date
@@ -37,6 +40,9 @@ function App() {
       {authToken && (
         <>
           <ListHeader listName={"🌴 Holiday Tick list"} getData={getData} />
+          <p>
+            Welcome back <strong>{userEmail}</strong>
+          </p>
           {sortedTasks?.map((task) => (
             <ListItem key={task.id} task={task} getData={getData} />
           ))}
