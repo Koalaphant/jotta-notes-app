@@ -7,7 +7,7 @@ export const Modal = ({ mode, setShowModal, getData, task }) => {
     user_email: editMode ? task.user_email : "andrew.wardjones@icloud.com",
     title: editMode ? task.title : "",
     progress: editMode ? task.progress : 50,
-    date: editMode ? "" : new Date().toISOString().substr(0, 10), // Adjusted for date format
+    date: editMode ? task.date : new Date(), // Adjusted for date format
   });
 
   async function postData(e) {
@@ -23,6 +23,25 @@ export const Modal = ({ mode, setShowModal, getData, task }) => {
         setShowModal(false);
         getData();
       }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function editdata(e) {
+    e.preventDefault();
+    const response = await fetch(`http://localhost:8000/todos/${task.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    console.log(response);
+    if (response.status === 200) {
+      setShowModal(false);
+      getData();
+    }
+
+    try {
     } catch (err) {
       console.error(err);
     }
@@ -67,7 +86,7 @@ export const Modal = ({ mode, setShowModal, getData, task }) => {
           <input
             className={mode}
             type="submit"
-            onClick={editMode ? undefined : postData}
+            onClick={editMode ? editdata : postData}
           />
         </form>
       </div>
