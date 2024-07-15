@@ -1,23 +1,39 @@
 import { useState } from "react";
 
-export const Modal = ({ mode, setShowModal, task }) => {
-  const editMode = mode === "edit" ? true : false;
+export const Modal = ({ mode, setShowModal, getData, task }) => {
+  const editMode = mode === "edit";
 
   const [data, setData] = useState({
-    user_email: editMode ? task.user_email : null,
-    title: editMode ? task.title : null,
+    user_email: editMode ? task.user_email : "andrew.wardjones@icloud.com",
+    title: editMode ? task.title : "",
     progress: editMode ? task.progress : 50,
-    date: editMode ? "" : new Date(),
+    date: editMode ? "" : new Date().toISOString().substr(0, 10), // Adjusted for date format
   });
+
+  async function postData(e) {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8000/todos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.status === 201) {
+        console.log("WORKED");
+        setShowModal(false);
+        getData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setData((data) => ({
-      ...data,
+    setData((prevData) => ({
+      ...prevData,
       [name]: value,
     }));
-
-    console.log(data);
   }
 
   return (
@@ -37,7 +53,7 @@ export const Modal = ({ mode, setShowModal, task }) => {
             onChange={handleChange}
           />
           <br />
-          <label for="range">Drag to select your current progress</label>
+          <label htmlFor="range">Drag to select your current progress</label>
           <input
             required
             type="range"
@@ -48,7 +64,11 @@ export const Modal = ({ mode, setShowModal, task }) => {
             value={data.progress}
             onChange={handleChange}
           />
-          <input className={mode} type="submit" />
+          <input
+            className={mode}
+            type="submit"
+            onClick={editMode ? undefined : postData}
+          />
         </form>
       </div>
     </div>
