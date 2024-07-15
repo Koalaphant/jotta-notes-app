@@ -13,7 +13,7 @@ export const Modal = ({ mode, setShowModal, getData, task }) => {
   async function postData(e) {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/todos", {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -30,7 +30,7 @@ export const Modal = ({ mode, setShowModal, getData, task }) => {
 
   async function editdata(e) {
     e.preventDefault();
-    const response = await fetch(`http://localhost:8000/todos/${task.id}`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/todos/${task.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
