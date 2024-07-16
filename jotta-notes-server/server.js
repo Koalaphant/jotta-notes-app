@@ -121,4 +121,4 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server running on PORT ${PORT}...`));
+app.listen(PORT, () => console.log(`The server is running on PORT ${PORT}...`));
