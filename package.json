@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "build": "cd jotta-notes-client && npm install && npm run build && cd ../jotta-notes-server && npm install",
-    "server": "node ./jotta-notes-server/server.js",
+    "server": "cd jotta-notes-server && npm install && node server.js",
     "client": "cd jotta-notes-client && npm run dev"
   },
   "dependencies": {
