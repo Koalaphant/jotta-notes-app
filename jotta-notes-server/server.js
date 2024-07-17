@@ -11,6 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 // Get all todos
+
+app.get("/", async (req, res) => {
+  res.send("jotta-notes-app");
+});
+
 app.get("/todos/:userEmail", async (req, res) => {
   const { userEmail } = req.params;
 
