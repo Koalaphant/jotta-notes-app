@@ -39,7 +39,7 @@ function App() {
       {!authToken && <Auth />}
       {authToken && (
         <>
-          <ListHeader listName={"🌴 Holiday Tick list"} getData={getData} />
+          <ListHeader listName={"Jotta To-Do App ✏️"} getData={getData} />
           <p>
             Welcome back <strong>{userEmail}</strong>
           </p>

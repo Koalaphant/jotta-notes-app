@@ -3,7 +3,7 @@ export const ProgressBar = ({ progress }) => {
     <div className="outer-bar">
       <div
         className="inner-bar"
-        style={{ width: `${progress}%`, backgroundColor: "gray" }}
+        style={{ width: `${progress}%`, backgroundColor: "#00407C" }}
       ></div>
     </div>
   );

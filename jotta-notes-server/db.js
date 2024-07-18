@@ -22,7 +22,7 @@ dotenv.config(); // Load environment variables from .env file
 const pool = new Pool({
   connectionString: process.env.VITE_DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false, // Only use for development, remove for production
+    rejectUnauthorized: false,
   },
 });
 

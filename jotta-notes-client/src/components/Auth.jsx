@@ -9,8 +9,6 @@ export const Auth = () => {
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(cookie);
-
   function viewLogin(status) {
     setError(null);
     setIsLoggedin(status);
@@ -76,13 +74,13 @@ export const Auth = () => {
         <div className="auth-options">
           <button
             onClick={() => viewLogin(false)}
-            style={{ backgroundColor: !isLoggedIn ? "white" : "salmon" }}
+            style={{ backgroundColor: !isLoggedIn ? "silver" : "grey" }}
           >
             Sign Up
           </button>
           <button
             onClick={() => viewLogin(true)}
-            style={{ backgroundColor: !isLoggedIn ? "white" : "salmon" }}
+            style={{ backgroundColor: !isLoggedIn ? "silver" : "silver" }}
           >
             Login
           </button>

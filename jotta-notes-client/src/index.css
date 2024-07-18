@@ -3,18 +3,19 @@ body {
     padding: 0px;
     box-sizing: border-box;
     background-color: aliceblue;
-    display: flex;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
     font-family: 'Trebuchet MS', Arial, sans-serif;
 }
 
 .app {
-    background-color: white;
     box-shadow: rgba(rgba(0, 0, 0, 0.464), 0 6px 24px, rgba(0,0,0,0.08));
     border-radius: 10px;
-    padding: 10px;
-    width: 800px;
-    margin-top: 50px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .button-container {
@@ -31,14 +32,15 @@ body {
 }
 
 .edit {
-    border: 1.5px solid rgb(141,181, 145);
-    color: rgb(131,181,145);
+    border: 1.5px solid #0081B6;
+    color: #0081B6;
     background-color: transparent;
     text-transform: uppercase;
 }
 
 .edit:hover{
-    background-color: rgb(182,223,186);
+    background-color: #003347;
+    color: white;
 }
 
 .edit:active{
@@ -49,7 +51,7 @@ body {
 
 .delete {
     border: 1.5px solid rgb(255,175,163);
-    color: rgb(255,175,163);
+    background-color:#4E0800;
     text-transform: uppercase;
 }
 
@@ -64,9 +66,10 @@ body {
 }
 
 .create {
-    border: 1.5px solid rgb(108,115,148);
-    color: rgb(108,115,148);
+    border: 1.5px solid white;
+    color: white;
     text-transform: uppercase;
+    background-color: #FF5733 !important;
 }
 
 .create:hover{
@@ -75,8 +78,9 @@ body {
 }
 
 .signout {
-    border: 1.5px solid salmon;
-    color: salmon;
+    border: 1.5px solid white;
+    color: white;
+    background-color: #900C3F !important;
 }
 
 input {
@@ -89,9 +93,10 @@ input {
 /* List Header */
 .list-header{
 display: flex;
-width: 100%;
+padding: 10px;
 justify-content: space-between;
 border-bottom: rgba(128, 128, 128, 0.096) 1px solid;
+background-color: #FFC300;
 }
 
 /* List Item */
@@ -173,21 +178,22 @@ border-bottom: rgba(128, 128, 128, 0.096) 1px solid;
 .auth-container {
     display: flex;
     justify-content: center;
-    margin: 50px;
+    align-items: center;
 }
 
 .auth-container-box {
-    width: 500px;
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0,0,0,0.08) 0 0 0 1px;
     padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
 
 .auth-container-box form {
     display: flex;
     flex-direction: column;
-    height: 350px;
     padding: 20px;
 }
 
@@ -205,7 +211,7 @@ border-bottom: rgba(128, 128, 128, 0.096) 1px solid;
 .outer-bar{
     width: 200px;
     height: 14px;
-    background-color: black;
+    background-color: #0081B6;
     border-radius: 7px;
     overflow: hidden;
 }
@@ -215,5 +221,5 @@ border-bottom: rgba(128, 128, 128, 0.096) 1px solid;
 }
 
 .task-title {
-    width: 300px;
+    padding-right: 20px;
 }
